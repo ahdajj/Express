@@ -1,0 +1,33 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title> 
+        <%- include('./shared/Header2') %>
+    </head>
+    <body>
+        <form class="Create" action="/newPost" method="post">
+            <label for="title">What is on your mind</label>
+            <textarea name="title" required></textarea>
+            <label for="text">What is on your mind</label>
+            <textarea name="text" required></textarea>
+            <input type="submit" value="ADD">
+        </form>
+
+        <% if(posts.length>0) { %>
+             <% posts.forEach(post =>{ %>
+                <div class="content">
+                <p><%=post.title%></p>
+                <p>Created at :<%=post.creat_at%></p>
+                <form action="/delete/<%=post._id%>" method="post">
+                    <button>delete</button>
+                </form>
+               </div>
+             <% }) %>
+        <% }else{ %>   
+            <p>there is no posts to display</p> 
+        <% } %>     
+       
+        
+    </body>
+</html>
